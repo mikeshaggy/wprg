@@ -1,9 +1,12 @@
 <?php
-$nums = fibonacci(10);
-//foreach ($nums as $key => $value) {
-//    echo $value . "\n";
-//}
-
+$fibonacciSequence = fibonacci(10);
+$count = 1;
+for ($i = 0; $i < count($fibonacciSequence); $i++) {
+    if ($i % 2 != 0) {
+        printf("%d: %d\n", $i, $fibonacciSequence[$i]);
+        $count++;
+    }
+}
 function fibonacci($num) {
     $array = array();
     $x = 0;
@@ -16,4 +19,4 @@ function fibonacci($num) {
     }
     return $array;
 }
-?>
+
