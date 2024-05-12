@@ -10,8 +10,8 @@
     <label for="path">Path:</label>
     <input type="text" id="path" name="path" required><br>
 
-    <label for="directory_name">Directory name:</label>
-    <input type="text" id="directory_name" name="directory_name"><br>
+    <label for="directoryName">Directory name:</label>
+    <input type="text" id="directoryName" name="directoryName"><br>
 
     <label for="operation">Operation:</label>
     <select id="operation" name="operation">

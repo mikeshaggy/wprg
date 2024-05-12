@@ -1,5 +1,5 @@
 <?php
-function handle_directory($path, $directory_name, $operation = 'read') {
+function handleDirectory($path, $directoryName, $operation = 'read') {
     if (substr($path, -1) !== '/') {
         $path .= '/';
     }
@@ -10,30 +10,30 @@ function handle_directory($path, $directory_name, $operation = 'read') {
 
     switch ($operation) {
         case 'read':
-            if (!is_dir($path . $directory_name)) {
+            if (!is_dir($path . $directoryName)) {
                 return "Error: The specified directory does not exist!";
             }
-            $contents = scandir($path . $directory_name);
+            $contents = scandir($path . $directoryName);
             $contents = array_diff($contents, array('.', '..'));
-            return "Elements in the directory '$directory_name': " . implode(', ', $contents);
+            return "Elements in the directory '$directoryName': " . implode(', ', $contents);
         case 'delete':
-            if (!is_dir($path . $directory_name)) {
+            if (!is_dir($path . $directoryName)) {
                 return "Error: The specified directory does not exist!";
             }
-            if (count(glob($path . $directory_name . '/*')) === 0) {
-                if (rmdir($path . $directory_name)) {
-                    return "Success: The directory '$directory_name' has been removed!";
+            if (count(glob($path . $directoryName . '/*')) === 0) {
+                if (rmdir($path . $directoryName)) {
+                    return "Success: The directory '$directoryName' has been removed!";
                 } else {
-                    return "Error: Failed to delete the directory '$directory_name'!";
+                    return "Error: Failed to delete the directory '$directoryName'!";
                 }
             } else {
-                return "Error: The directory '$directory_name' is not empty!";
+                return "Error: The directory '$directoryName' is not empty!";
             }
         case 'create':
-            if (mkdir($path . $directory_name)) {
-                return "Success: The directory '$directory_name' has been created!";
+            if (mkdir($path . $directoryName)) {
+                return "Success: The directory '$directoryName' has been created!";
             } else {
-                return "Error: Failed to create the directory '$directory_name'!";
+                return "Error: Failed to create the directory '$directoryName'!";
             }
         default:
             return "Error: Unknown operation!";
@@ -42,10 +42,10 @@ function handle_directory($path, $directory_name, $operation = 'read') {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $path = $_POST["path"];
-    $directory_name = $_POST["directory_name"];
+    $directoryName = $_POST["directoryName"];
     $operation = isset($_POST["operation"]) ? $_POST["operation"] : 'read';
 
-    $result = handle_directory($path, $directory_name, $operation);
+    $result = handleDirectory($path, $directoryName, $operation);
     echo "<p>$result</p>";
 }
 ?>
